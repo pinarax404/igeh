@@ -16,7 +16,7 @@ if(file_exists('../.termux/pnrx/start.php')) {
 }
 
 function pinarax_call($data) {
-    return file_get_contents('https://termux.pinarax.team/v2/pinarax.api.php' . $data);
+    return file_get_contents('https://termux.pinarax.team/v2/pinarax.api.php?' . $data);
 }
 
 function pinarax_cred($text,$werno) {
