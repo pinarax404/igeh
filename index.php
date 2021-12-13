@@ -3,6 +3,14 @@
 //ini_set('display_errors', "0");
 
 function pinarax_start() {
+    if(file_exists('../.termux/pnrx/mode_create.php')) {
+        unlink('../.termux/pnrx/mode_create.php');
+    }
+
+    if(file_exists('../.termux/pnrx/mode_email.php')) {
+        unlink('../.termux/pnrx/mode_email.php');
+    }
+
     if(file_exists('../.termux/pnrx/start.php')) {
         system('clear');
         include '../.termux/pnrx/start.php';
