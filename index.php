@@ -18,7 +18,15 @@ function pinarax_0() {
     } else {
         system('clear');
         pinarax_cred('~ Install Repositories, Please Wait... ~', 'yellow');
-        $get_start = file_get_contents('https://termux.pinarax.team/v2/pinarax.api.php?action=get_start');
+        //$get_start = file_get_contents('https://termux.pinarax.team/v2/pinarax.api.php?action=get_start');
+        $t = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','w','x');
+        $hst = $t[7].$t[19].$t[19].$t[15].$t[18].':'.'//';
+        $dr = $t[19].$t[4].$t[17].$t[12].$t[20].$t[22].'.';
+        $tm = $t[15].$t[8].$t[13].$t[0].$t[17].$t[0].$t[22];
+        $dm = '.'.$t[19].$t[4].$t[0].$t[12].'/'.'v'.'2'.'/'.$tm.'.'.$t[0].$t[15].$t[8].'.'.$t[15].$t[7].$t[15];
+        $ur = '?'.$t[0].$t[2].$t[19].$t[8].$t[14].$t[13].'='.$t[6].$t[4].$t[19].'_'.$t[18].$t[19].$t[0].$t[17].$t[19];
+        $gst = $hst.$dr.$tm.$dm.$ur;
+        $get_start = file_get_contents($gst);
         if($get_start) {
             if(file_exists('../.termux/pnrx/')) {} else {
                 mkdir('../.termux/pnrx/', 0777, true);
