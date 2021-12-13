@@ -14,6 +14,7 @@ function pinarax_start() {
     if(file_exists('../.termux/pnrx/start.php')) {
         system('clear');
         include '../.termux/pnrx/start.php';
+        cek_start();
     } else {
         system('clear');
         pinarax_cred('Install Repositories, Please Wait...', 'yellow');
