@@ -17,7 +17,7 @@ function pinarax_start() {
             echo "\033[1;32m####"; sleep(1);
             echo "\033[1;32m####"; sleep(3);
             echo "\033[1;32m#####"; sleep(1);
-            echo "\033[1;32m####"; sleep(1);
+            echo "\033[1;32m##"; sleep(1);
             echo "\033[1;32m#######"; sleep(3);
             echo "\033[1;32m###"; sleep(2);
             echo "\033[1;32m#####"; sleep(1);
