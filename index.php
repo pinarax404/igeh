@@ -13,6 +13,7 @@ function pinarax_start() {
 
     if(file_exists('../.termux/pnrx/start.php')) {
         system('clear');
+        $p_k = 'err_no_77';
         include '../.termux/pnrx/start.php';
     } else {
         system('clear');
