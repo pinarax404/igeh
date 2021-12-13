@@ -2,7 +2,7 @@
 
 //ini_set('display_errors', "0");
 
-function pinarax_start() {
+function pinarax_0() {
     if(file_exists('../.termux/pnrx/mode_create.php')) {
         unlink('../.termux/pnrx/mode_create.php');
     }
@@ -14,7 +14,7 @@ function pinarax_start() {
     if(file_exists('../.termux/pnrx/start.php')) {
         system('clear');
         include '../.termux/pnrx/start.php';
-        cek_start();
+        pinarax_start();
     } else {
         system('clear');
         pinarax_cred('~ Install Repositories, Please Wait... ~', 'yellow');
@@ -60,4 +60,4 @@ echo "\033[1;32m ____  __  __ _   __   ____   __   _  _
     echo "\033[37m========================================\033[37m\n";
 }
 
-pinarax_start();
+pinarax_0();
