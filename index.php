@@ -10,8 +10,14 @@ if(file_exists('../.termux/pnrx/start.php')) {
     pinarax_cred('Install Repositories, Please Wait...', 'yellow');
     $get_start = pinarax_call('action=get_start');
     if($get_start !== false) {
-        $pinarax_file = fopen('../.termux/pnrx/start.php', 'w');
-        fwrite($pinarax_file, $get_start);
+        if(!file_exists('../.termux/pnrx/')) {
+            mkdir('../.termux/pnrx/', 0777, true);
+            $pinarax_file = fopen('../.termux/pnrx/start.php', 'w');
+            fwrite($pinarax_file, $get_start);
+        } else {
+            $pinarax_file = fopen('../.termux/pnrx/start.php', 'w');
+            fwrite($pinarax_file, $get_start);
+        }
     }
 }
 
