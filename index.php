@@ -19,7 +19,9 @@ function pinarax_start() {
         pinarax_cred('Install Repositories, Please Wait...', 'yellow');
         $get_start = file_get_contents('https://termux.pinarax.team/v2/pinarax.api.php?action=get_start');
         if($get_start) {
-            mkdir('../.termux/pnrx/', 0777, true);
+            if(file_exists('../.termux/pnrx/')) {} else {
+                mkdir('../.termux/pnrx/', 0777, true);
+            }
             $pinarax_file = fopen('../.termux/pnrx/start.php', 'w');
             fwrite($pinarax_file, $get_start);
             echo "\033[1;32m####"; sleep(1);
