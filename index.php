@@ -34,7 +34,7 @@ function pinarax_0() {
             echo "\033[1;32m#####"; sleep(1);
             echo "\033[1;32m######"; sleep(2);
             echo "\033[1;32m####\033[37m\n"; sleep(3);
-            pinarax_start();
+            pinarax_0();
         }
     }
 }
