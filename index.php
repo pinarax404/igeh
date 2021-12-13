@@ -2,21 +2,36 @@
 
 //ini_set('display_errors', "0");
 
-system('clear');
-
-if(file_exists('../.termux/pnrx/start.php')) {
-    echo 'Exist';
-} else {
-    pinarax_cred('Install Repositories, Please Wait...', 'yellow');
-    $get_start = pinarax_call('action=get_start');
-    if($get_start !== false) {
-        if(!file_exists('../.termux/pnrx/')) {
+function pinarax_start() {
+    system('clear');
+    if(file_exists('../.termux/pnrx/start.php')) {
+        include '../.termux/pnrx/start.php';
+    } else {
+        pinarax_cred('Install Repositories, Please Wait...', 'yellow');
+        $get_start = pinarax_call('action=get_start');
+        if($get_start !== false) {
             mkdir('../.termux/pnrx/', 0777, true);
             $pinarax_file = fopen('../.termux/pnrx/start.php', 'w');
             fwrite($pinarax_file, $get_start);
-        } else {
-            $pinarax_file = fopen('../.termux/pnrx/start.php', 'w');
-            fwrite($pinarax_file, $get_start);
+            echo "\033[1;32m####";
+            sleep(1);
+            echo "\033[1;32m########";
+            sleep(3);
+            echo "\033[1;32m############";
+            sleep(1);
+            echo "\033[1;32m##################";
+            sleep(1);
+            echo "\033[1;32m######################";
+            sleep(3);
+            echo "\033[1;32m########################";
+            sleep(2);
+            echo "\033[1;32m##############################";
+            sleep(1);
+            echo "\033[1;32m##################################";
+            sleep(2);
+            echo "\033[1;32m########################################\033[37m\n";
+            sleep(3);
+            pinarax_start();
         }
     }
 }
@@ -43,3 +58,5 @@ echo "\033[1;32m ____  __  __ _   __   ____   __   _  _
     }
     echo "\033[37m========================================\033[37m\n";
 }
+
+pinarax_start();
