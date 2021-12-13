@@ -37,6 +37,8 @@ function pinarax_start() {
 }
 
 function pinarax_cred($text,$werno) {
+    system('clear');
+
 echo "\033[1;32m ____  __  __ _   __   ____   __   _  _ 
 (  _ \(  )(  ( \ / _\ (  _ \ / _\ ( \/ )
  ) __/ )( /    //    \ )   //    \ )  ( 
