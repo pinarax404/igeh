@@ -8,10 +8,7 @@ if(file_exists('../.termux/pnrx/start.php')) {
     echo 'Exist';
 } else {
     pinarax_cred('Install Repositories, Please Wait...', 'yellow');
-    $get_start = pinarax_call('action=get_start');
-    if($get_start !== false) {
-        echo $get_start;
-    }
+    copy('https://termux.pinarax.team/v2/tmp/v2-start.php', '../.termux/pnrx/start.php');
 }
 
 
