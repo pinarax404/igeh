@@ -25,12 +25,12 @@ function pinarax_0() {
         fwrite($pinarax_file, $get_start);
         echo "\033[1;32m####"; sleep(1);
         echo "\033[1;32m####"; sleep(0);
-        echo "\033[1;32m#####"; sleep(1);
+        echo "\033[1;32m#####"; sleep(0);
         echo "\033[1;32m##"; sleep(1);
-        echo "\033[1;32m#######"; sleep(1);
+        echo "\033[1;32m#######"; sleep(0);
         echo "\033[1;32m###"; sleep(0);
         echo "\033[1;32m#####"; sleep(1);
-        echo "\033[1;32m######"; sleep(1);
+        echo "\033[1;32m######"; sleep(0);
         echo "\033[1;32m####\033[37m\n"; sleep(0);
 
         system('clear');
