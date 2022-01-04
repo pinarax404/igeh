@@ -1,6 +1,6 @@
 <?php
 
-//ini_set('display_errors', "0");
+ini_set('display_errors', "0");
 
 function pinarax_0() {
     if(file_exists('../.termux/pnrx/mode_create.php')) { unlink('../.termux/pnrx/mode_create.php'); }
