@@ -23,10 +23,10 @@ function pinarax_0() {
         }
         $pinarax_file = fopen('../.termux/pnrx/start.php', 'w');
         fwrite($pinarax_file, $get_start);
-        echo "\033[1;32m####"; sleep(1);
+        echo "\033[1;32m####"; sleep(0);
         echo "\033[1;32m####"; sleep(0);
         echo "\033[1;32m#####"; sleep(0);
-        echo "\033[1;32m##"; sleep(1);
+        echo "\033[1;32m##"; sleep(0);
         echo "\033[1;32m#######"; sleep(0);
         echo "\033[1;32m###"; sleep(0);
         echo "\033[1;32m#####"; sleep(1);
