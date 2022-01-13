@@ -2,9 +2,9 @@
 
 pinarax_get_imel();
 
-function split_email_code($data) {
-    $rt = explode('"subject":"', $data)[1];
-    $rt = explode(' is your', $rt)[0];
+function _split($start, $end, $data) {
+    $rt = explode($start, $data)[1];
+    $rt = explode($end, $rt)[0];
     return $rt;
 }
 
@@ -12,15 +12,26 @@ function pinarax_get_imel() {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, 'https://m.kuku.lu/index.php');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 20);
     curl_setopt($ch, CURLOPT_COOKIEJAR, 'tmp/cookiesimel.txt');
-    curl_setopt($ch, CURLOPT_HEADER, 0);
     $store = curl_exec($ch);
-
-    curl_setopt($ch, CURLOPT_URL, 'https://m.kuku.lu/index.php?action=addMailAddrByOnetime&nopost=1&by_system=1&recaptcha_token=');
-    $content = curl_exec($ch);
-
-    echo $content;
+    curl_close($ch);
+    
+    $new_email_uri = 'https://m.kuku.lu/index.php?action=addMailAddrByOnetime' . _split('action=addMailAddrByOnetime', '"+recaptcha_token', $store);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://m.kuku.lu/index._addrlist.php?&t=1642087267633&nopost=1&_=1642087267123');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+    curl_setopt($ch, CURLOPT_COOKIEFILE, 'tmp/cookiesimel.txt');
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    $rsp = curl_exec($ch);
+    curl_close($ch);
+    
+    echo $rsp;
 }
 
 function pinarax_imel_code($email) {
