@@ -13,11 +13,11 @@ function pinarax_get_imel() {
     curl_setopt($ch, CURLOPT_URL, 'https://m.kuku.lu/index.php');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 20);
-    curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookie.txt');
+    curl_setopt($ch, CURLOPT_COOKIEJAR, 'tmp/cookiesimel.txt');
     curl_setopt($ch, CURLOPT_HEADER, 0);
     $store = curl_exec($ch);
 
-    curl_setopt($ch, CURLOPT_URL, 'https://m.kuku.lu/index.php?action=addMailAddrByOnetime&nopost=1&by_system=1');
+    curl_setopt($ch, CURLOPT_URL, 'https://m.kuku.lu/index.php?action=addMailAddrByOnetime&nopost=1&by_system=1&recaptcha_token=');
     $content = curl_exec($ch);
 
     echo $content;
