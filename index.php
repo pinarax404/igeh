@@ -78,7 +78,7 @@ function pinarax_start_create() {
             $res_curl_username = json_decode($curl_username, true);
             $res_username = $res_curl_username['suggestions'][0];
             $p_submit_email = 'device_id='.$res_ig_mid.'&email='.$res_email_id;
-            $submit_email = pinarax_curl_ig('https://i.instagram.com/api/v1/accounts/send_verify_email/', $p_submit_email, true, false, $res_ig_csrftoken, $cookies_ready, false, '', 'respons_data');
+            $submit_email = pinarax_curl_ig('https://i.instagram.com/api/v1/accounts/send_verify_email/', $p_submit_email, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data');
             if($submit_email !== false && strpos($submit_email, 'email_sent') !== false) {
                 echo "\033[1;37mWaiting Email Code : ";
                 sleep(5);
