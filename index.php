@@ -61,7 +61,7 @@ function pinarax_start_create() {
     if($curl_cookies !== false && $curl_user !== false && $curl_email !== false) {
         $json_generate_user         = json_decode($curl_user, true);
         $json_generate_email        = json_decode($curl_email, true);
-        $user_agent                 = 'Instagram '.rand(1,9).'.'.rand(0,9).'.'.rand(0,9).' Android (24/7.0; 380dpi; 1080x1920; OnePlus; ONEPLUS A30'.rand(00,99).'; OnePlus3T; qcom; tr_TR';
+        $user_agent                 = 'Instagram - '.rand(1111111111,9999999999);
 
         $res_ig_ig_did              = rplc_mode_create('ig_did=', ';', $curl_cookies);
         $res_ig_mid                 = rplc_mode_create('mid=', ';', $curl_cookies);
