@@ -61,7 +61,7 @@ function pinarax_start_create() {
     if($curl_cookies !== false && $curl_user !== false && $curl_email !== false) {
         $json_generate_user         = json_decode($curl_user, true);
         $json_generate_email        = json_decode($curl_email, true);
-        $user_agent                 = 'Instagram - '.time();
+        $user_agent                 = 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53 BingPreview/1.0b';
 
         $res_ig_ig_did              = rplc_mode_create('ig_did=', ';', $curl_cookies);
         $res_ig_mid                 = rplc_mode_create('mid=', ';', $curl_cookies);
