@@ -79,7 +79,7 @@ function pinarax_start_create() {
     ];
     shuffle($prx);
 
-    $get_ip                         = pinarax_curl_attr('https://ipwhois.app/json/', $prx[0]);
+    $get_ip                         = pinarax_curl_attr('https://ipwhois.app/json/', 'uk-020.whiskergalaxy.com:443');
     if($get_ip !== false) {
         $res_get_ip                 = json_decode($get_ip, true);
         echo "\033[1;37mIP : " . $res_get_ip['ip'] . " | Country : " . $res_get_ip['country'] . "\033[1;37m\n";
@@ -91,12 +91,11 @@ function pinarax_start_create() {
 }
 
 function pinarax_curl_attr($url, $pxy) {
-    echo $pxy . "\n";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTPS);
-    curl_setopt($ch, CURLOPT_PROXY, 'uk-012.whiskergalaxy.com:443');
+    curl_setopt($ch, CURLOPT_PROXY, $pxy);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
