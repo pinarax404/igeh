@@ -94,7 +94,8 @@ function pinarax_curl_attr($url, $pxy) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_HEADER, false);
-    curl_setopt($ch, CURLOPT_PROXY_HTTPS, $pxy);
+    curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTPS);
+    curl_setopt($ch, CURLOPT_PROXY, $pxy);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -109,6 +110,8 @@ function pinarax_curl_attr($url, $pxy) {
     } else {
         return false;
     }
+    
+    echo $pxy;
 }
 
 function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $in_cookies, $save_cookies, $useragent, $showresult, $proxy) {
