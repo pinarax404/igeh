@@ -61,7 +61,7 @@ function pinarax_start_create() {
     if($curl_cookies !== false && $curl_user !== false && $curl_email !== false) {
         $json_generate_user         = json_decode($curl_user, true);
         $json_generate_email        = json_decode($curl_email, true);
-        $user_agent                 = 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53 BingPreview/1.0b';
+        $user_agent                 = 'Mozilla/5.0 (Linux; Android 9; SM-A102U Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.136 Mobile Safari/537.36 Instagram 155.0.0.37.107 Android (28/9; 320dpi; 720x1468; samsung; SM-A102U; a10e; exynos7885; en_US; 239490550)';
 
         $res_ig_ig_did              = rplc_mode_create('ig_did=', ';', $curl_cookies);
         $res_ig_mid                 = rplc_mode_create('mid=', ';', $curl_cookies);
@@ -236,25 +236,44 @@ function pinarax_cek_ig_account($url) {
 
 function split_email_code($data) {
     $rt = explode('"subject":"', $data)[1];
-    $rt = explode(' is your', $rt)[0];
+    $rt = explode(' is your Instagram code', $rt)[0];
     return $rt;
 }
 
 function pinarax_get_imel() {
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://tempmail.altmails.com/random-email-address');
+    curl_setopt($ch, CURLOPT_URL, 'https://tempmailo.com/');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 20);
     curl_setopt($ch, CURLOPT_COOKIEJAR, 'tmp/cookiesimel.txt');
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    $rsp = curl_exec($ch);
+    curl_close($ch);
+
+    $_token = explode('name="__RequestVerificationToken" type="hidden" value="', $rsp)[1];
+    $_token = explode('"', $_token)[0];
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://tempmailo.com/changemail');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'requestverificationtoken: ' . $_token
+    ));
+    curl_setopt($ch, CURLOPT_COOKIEFILE, 'tmp/cookiesimel.txt');
     curl_setopt($ch, CURLOPT_HEADER, 0);
     $respons_data = curl_exec($ch);
     $respons_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
 
     if($respons_http_code == 200) {
-        return '{
-            "email": "'.$respons_data.'"
-        }';
+        if(strpos($respons_data, 'ryteto.me') !== false || strpos($respons_data, 'onekisspresave.com') !== false || strpos($respons_data, 'norwegischlernen.info') !== false || strpos($respons_data, 'kellychibale-researchgroup-uct.com') !== false || strpos($respons_data, 'thecarinformation.com') !== false || strpos($respons_data, 'musiccode.me') !== false) {
+            return '{
+                "email": "'.$respons_data.'"
+            }';
+        } else {
+            return false;
+        }
     } else {
         return false;
     }
@@ -262,7 +281,7 @@ function pinarax_get_imel() {
 
 function pinarax_imel_code($email) {
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://tempmail.altmails.com');
+    curl_setopt($ch, CURLOPT_URL, 'https://tempmailo.com/');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 20);
     curl_setopt($ch, CURLOPT_COOKIEFILE, 'tmp/cookiesimel.txt');
@@ -270,17 +289,21 @@ function pinarax_imel_code($email) {
     $rsp = curl_exec($ch);
     curl_close($ch);
 
-    $_token = explode('name="_token" id="token" value="', $rsp)[1];
-    $_token = explode('">', $_token)[0];
+    $_token = explode('name="__RequestVerificationToken" type="hidden" value="', $rsp)[1];
+    $_token = explode('"', $_token)[0];
 
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://tempmail.altmails.com/fetch-emails/'.$email);
+    curl_setopt($ch, CURLOPT_URL, 'https://tempmailo.com/');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'requestverificationtoken: ' . $_token,
+        'content-type: application/json;charset=UTF-8'
+    ));
     curl_setopt($ch, CURLOPT_COOKIEFILE, 'tmp/cookiesimel.txt');
-    curl_setopt($ch, CURLOPT_POSTFIELDS, '_token=' . $_token);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, '{"mail":"'.$email.'"}');
     curl_setopt($ch, CURLOPT_HEADER, 0);
     $respons_data = curl_exec($ch);
     $respons_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
