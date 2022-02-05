@@ -1,6 +1,6 @@
 <?php
 
-//ini_set('display_errors', "0");
+ini_set('display_errors', "0");
 system('clear');
 
 echo "\033[1;32m ____  __  __ _   __   ____   __   _  _ 
