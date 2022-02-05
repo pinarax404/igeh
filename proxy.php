@@ -100,7 +100,7 @@ function pinarax_start_create() {
     }
 
     $curl_cookies                   = pinarax_curl_ig('https://www.instagram.com/data/shared_data/?__a=1', false, false, true, '', '', false, '', 'respons_header', false);
-    $curl_user                      = pinarax_curl_attr('https://randomuser.me/api/?gender=female&nat=us');
+    $curl_user                      = pinarax_curl_attr('https://randomuser.me/api/?gender=female&nat=us', $prx[0]);
     $curl_email                     = pinarax_get_imel();
     $time                           = time();
 
