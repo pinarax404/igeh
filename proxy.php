@@ -78,7 +78,6 @@ function pinarax_start_create() {
         "uk-020.whiskergalaxy.com:443"
     ];
     shuffle($prx);
-    echo $prx[0] . "\n";
 
     $get_ip                         = pinarax_curl_attr('https://ipwhois.app/json/', $prx[0]);
     if($get_ip !== false) {
@@ -92,6 +91,7 @@ function pinarax_start_create() {
 }
 
 function pinarax_curl_attr($url, $pxy) {
+    echo $pxy . "\n";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_HEADER, false);
