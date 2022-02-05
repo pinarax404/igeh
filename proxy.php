@@ -185,12 +185,12 @@ function pinarax_start_create() {
     }
 }
 
-function pinarax_curl_attr($url, $proxy) {
+function pinarax_curl_attr($url, $pxy) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTPS);
-    curl_setopt($ch, CURLOPT_PROXY, $proxy);
+    curl_setopt($ch, CURLOPT_PROXY, $pxy);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
