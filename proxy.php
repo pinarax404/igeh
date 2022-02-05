@@ -121,11 +121,13 @@ function pinarax_start_create() {
         $p_curl_username = 'name='.$res_name;
         $curl_username = pinarax_curl_ig('https://www.instagram.com/accounts/username_suggestions/', $p_curl_username, true, false, $res_ig_csrftoken, $cookies_ready, false, '', 'respons_data', false);
         if($curl_username !== false  && strpos($curl_username, 'suggestions') !== false) {
+            echo $curl_username . "\n";
             $res_curl_username = json_decode($curl_username, true);
             $res_username = $res_curl_username['suggestions'][0];
             $p_submit_email = 'device_id='.$res_ig_mid.'&email='.$res_email_id;
             $submit_email = pinarax_curl_ig('https://i.instagram.com/api/v1/accounts/send_verify_email/', $p_submit_email, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data', $prx[0]);
             if($submit_email !== false && strpos($submit_email, 'email_sent') !== false) {
+                echo $submit_email . "\n";
                 echo "\033[1;37mWaiting Email Code : ";
                 sleep(5);
                 $cek_code = cek_code($res_email_id);
@@ -139,6 +141,7 @@ function pinarax_start_create() {
                         $p_create_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&email='.$res_email_id.'&username='.$res_username.'&first_name='.$res_name.'&month='.rand(1,11).'&day='.rand(1,25).'&year='.rand(1990,1999).'&client_id='.$res_ig_mid.'&seamless_login_enabled=1&tos_version=row&opt_into_one_tap=false&force_sign_up_code='.$signup_code;
                         $create_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/web_create_ajax/', $p_create_ajax, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data', $prx[0]);
                         if($create_ajax){
+                            echo $create_ajax . "\n";
                             $p_login_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&username='.$res_username.'&queryParams=%7B%7D&optIntoOneTap=false&stopDeletionNonce=&trustedDeviceRecords=%7B%7D';
                             $login_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/login/ajax/', $p_login_ajax, true, false, $res_ig_csrftoken, $cookies_ready, true, '', 'respons_data', $prx[0]);
                             if($login_ajax) {
