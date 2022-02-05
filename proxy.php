@@ -87,100 +87,14 @@ function pinarax_start_create() {
         echo "\033[1;37mIP : null | Country : null\033[1;37m\n";
     }
 
-    $curl_cookies                   = pinarax_curl_ig('https://www.instagram.com/data/shared_data/?__a=1', false, false, true, '', '', false, '', 'respons_header', $prx[0]);
-    echo $curl_cookies . "\n";
-    $curl_user                      = pinarax_curl_attr('https://randomuser.me/api/?gender=female&nat=us', $prx[0]);
-    $curl_email                     = pinarax_get_imel();
-    $time                           = time();
-
-    if($curl_cookies !== false && $curl_user !== false && $curl_email !== false) {
-        $json_generate_user         = json_decode($curl_user, true);
-        $json_generate_email        = json_decode($curl_email, true);
-        $user_agent                 = $u_gen[0];
-
-        $res_ig_ig_did              = rplc_mode_create('ig_did=', ';', $curl_cookies);
-        $res_ig_mid                 = rplc_mode_create('mid=', ';', $curl_cookies);
-        $res_ig_csrftoken           = rplc_mode_create('csrftoken=', ';', $curl_cookies);
-
-        $cookies_ready              = 'ig_did=' . $res_ig_ig_did . '; mid=' . $res_ig_mid . '; csrftoken=' . $res_ig_csrftoken . ';';
-        $res_name                   = strtolower($json_generate_user['results']['0']['name']['first'] . ' ' . $json_generate_user['results']['0']['name']['last']);
-        $res_password               = 'badaklepas123';
-        $res_email_id               = $json_generate_email['email'];
-
-        $p_curl_username = 'name='.$res_name;
-        $curl_username = pinarax_curl_ig('https://www.instagram.com/accounts/username_suggestions/', $p_curl_username, true, false, $res_ig_csrftoken, $cookies_ready, false, '', 'respons_data', $prx[0]);
-        if($curl_username !== false  && strpos($curl_username, 'suggestions') !== false) {
-            echo $curl_username . "\n";
-            $res_curl_username = json_decode($curl_username, true);
-            $res_username = $res_curl_username['suggestions'][0];
-            $p_submit_email = 'device_id='.$res_ig_mid.'&email='.$res_email_id;
-            $submit_email = pinarax_curl_ig('https://i.instagram.com/api/v1/accounts/send_verify_email/', $p_submit_email, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data', $prx[0]);
-            if($submit_email !== false && strpos($submit_email, 'email_sent') !== false) {
-                echo $submit_email . "\n";
-                echo "\033[1;37mWaiting Email Code : ";
-                sleep(5);
-                $cek_code = cek_code($res_email_id);
-                if($cek_code !== false) {
-                    echo $cek_code . "\033[1;37m\n";
-                    $p_submit_code = 'code='.$cek_code.'&device_id='.$res_ig_mid.'&email='.$res_email_id;
-                    $submit_code = pinarax_curl_ig('https://i.instagram.com/api/v1/accounts/check_confirmation_code/', $p_submit_code, true, false, $res_ig_csrftoken, $cookies_ready, false, '', 'respons_data', $prx[0]);
-                    if($submit_code !== false  && strpos($submit_code, 'signup_code') !== false) {
-                        $res_submit_code = json_decode($submit_code, true);
-                        $signup_code = $res_submit_code['signup_code'];
-                        $p_create_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&email='.$res_email_id.'&username='.$res_username.'&first_name='.$res_name.'&month='.rand(1,11).'&day='.rand(1,25).'&year='.rand(1990,1999).'&client_id='.$res_ig_mid.'&seamless_login_enabled=1&tos_version=row&opt_into_one_tap=false&force_sign_up_code='.$signup_code;
-                        $create_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/web_create_ajax/', $p_create_ajax, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data', $prx[0]);
-                        if($create_ajax){
-                            echo $create_ajax . "\n";
-                            $p_login_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&username='.$res_username.'&queryParams=%7B%7D&optIntoOneTap=false&stopDeletionNonce=&trustedDeviceRecords=%7B%7D';
-                            $login_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/login/ajax/', $p_login_ajax, true, false, $res_ig_csrftoken, $cookies_ready, true, '', 'respons_data', $prx[0]);
-                            if($login_ajax) {
-                                $cek_ig_account = pinarax_cek_ig_account('https://www.instagram.com/' . $res_username . '/?__a=1');
-                                if($cek_ig_account !== false && strpos($cek_ig_account, 'profile_pic_url') !== false && strpos($cek_ig_account, 'username') !== false) {
-                                    echo "\033[1;32m✔ \033[1;37mCreate : \033[1;32mSuccess\033[1;37m\n";
-                                    echo "\033[1;32m✔ \033[1;37mUsername : \033[1;32m" . $res_username. "\033[1;37m\n";
-                                    echo "\033[1;32m✔ \033[1;37mEmail : \033[1;32m" . $res_email_id. "\033[1;37m\n";
-                                    echo "\033[1;37m========================================\033[1;37m\n";
-                                    file_put_contents("akun.txt", $res_username . " | " . $res_password . "\n", FILE_APPEND);
-                                    pinarax_start_create();
-                                } else {
-                                    echo "\033[1;33m✘ \033[1;37mCreate : \033[1;33mCheckpoint\033[1;37m\n";
-                                    echo "\033[1;33m✘ \033[1;37mUsername : \033[1;33m" . $res_username. "\033[1;37m\n";
-                                    echo "\033[1;33m✘ \033[1;37mEmail : \033[1;33m" . $res_email_id. "\033[1;37m\n";
-                                    echo "\033[1;37m========================================\033[1;37m\n";
-                                    pinarax_start_create();
-                                }
-                            } else {
-                               pinarax_start_create();
-                            }
-                        } else {
-                            pinarax_start_create();
-                        }
-                    } else {
-                        pinarax_start_create();
-                    }
-                } else {
-                    echo "\033[1;31mFailed\033[1;37m\n";
-                    pinarax_start_create();
-                }
-            } else {
-                echo "\033[1;31mError Submitting Email...\033[1;37m\n";
-                pinarax_start_create();
-            }
-        } else {
-            pinarax_start_create();
-        }
-    } else {
-        pinarax_start_create();
-    }
+    pinarax_start_create();
 }
 
 function pinarax_curl_attr($url, $pxy) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_HEADER, false);
-    curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
-    curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTPS);
-    curl_setopt($ch, CURLOPT_PROXY, $pxy);
+    curl_setopt($ch, CURLOPT_PROXY_HTTPS, $pxy);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
