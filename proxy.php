@@ -87,7 +87,7 @@ function pinarax_start_create() {
         echo "\033[1;37mIP : null | Country : null\033[1;37m\n";
     }
 
-    $curl_cookies                   = pinarax_curl_ig('https://www.instagram.com/data/shared_data/?__a=1', false, false, true, '', '', false, '', 'respons_header', false);
+    $curl_cookies                   = pinarax_curl_ig('https://www.instagram.com/data/shared_data/?__a=1', false, false, true, '', '', false, '', 'respons_header', $prx[0]);
     $curl_user                      = pinarax_curl_attr('https://randomuser.me/api/?gender=female&nat=us', $prx[0]);
     $curl_email                     = pinarax_get_imel();
     $time                           = time();
@@ -107,7 +107,7 @@ function pinarax_start_create() {
         $res_email_id               = $json_generate_email['email'];
 
         $p_curl_username = 'name='.$res_name;
-        $curl_username = pinarax_curl_ig('https://www.instagram.com/accounts/username_suggestions/', $p_curl_username, true, false, $res_ig_csrftoken, $cookies_ready, false, '', 'respons_data', false);
+        $curl_username = pinarax_curl_ig('https://www.instagram.com/accounts/username_suggestions/', $p_curl_username, true, false, $res_ig_csrftoken, $cookies_ready, false, '', 'respons_data', $prx[0]);
         if($curl_username !== false  && strpos($curl_username, 'suggestions') !== false) {
             echo $curl_username . "\n";
             $res_curl_username = json_decode($curl_username, true);
