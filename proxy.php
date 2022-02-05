@@ -96,9 +96,9 @@ function pinarax_curl_attr($url, $pxy) {
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTPS);
-    curl_setopt($ch, CURLOPT_PROXY, $pxy);
+    curl_setopt($ch, CURLOPT_PROXY, 'uk-012.whiskergalaxy.com:443');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 25);
     $respons_data = curl_exec($ch);
