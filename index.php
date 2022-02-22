@@ -62,7 +62,7 @@ function pinarax_start_create() {
     if($curl_cookies1 !== false && $curl_cookies2 !== false && $curl_user !== false && $curl_email !== false) {
         $json_generate_user         = json_decode($curl_user, true);
         $json_generate_email        = json_decode($curl_email, true);
-        $user_agent                 = "Opera/9.80 (Android; Opera Mini/7.5.33361/31.1448; U; en) Presto/2.8.119 Version/11.1010";
+        $user_agent                 = "Mozilla/5.0 (iPhone; CPU iPhone OS 11_1_1 like Mac OS X) AppleWebKit/604.3.5 (KHTML, like Gecko) Mobile/15B150 Instagram 32.0.0.14.97 (iPhone10,6; iOS 11_1_1; ru_UA; ru-UA; scale=3.00; gamut=wide; 1125x2436)";
 
         $res_ig_ig_did              = rplc_mode_create('"device_id":"', '","', $curl_cookies1);
         $res_ig_mid                 = $curl_cookies2;
