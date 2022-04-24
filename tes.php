@@ -63,7 +63,7 @@ function pinarax_start_create() {
     if($curl_cookies1 !== false && $curl_cookies2 !== false && $curl_user !== false && $curl_email !== false) {
         $json_generate_user         = json_decode($curl_user, true);
         $json_generate_email        = json_decode($curl_email, true);
-        $user_agent                 = "Mozilla/5.0 (Linux; Android 5.0.2; SM-G530H Build/LRX22G; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/91.0.4472.164 Mobile Safari/537.36 Instagram 197.0.0.26.119 Android (21/5.0.2; 240dpi; 540x960; samsung; SM-G530H; fortuna3g; qcom; ru_RU; 305478165)";
+        $user_agent                 = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Version/14.4.2 Safari/605.1.15 AlohaBrowser/3.5.0";
 
         $res_ig_ig_did              = rplc_mode_create('"device_id":"', '","', $curl_cookies1);
         $res_ig_mid                 = $curl_cookies2;
@@ -164,9 +164,9 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $in_cook
     if($httpheader) {
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'x-csrftoken: ' . $csrftoken,
-            //'user-agent: ' . $useragent,
+            'user-agent: ' . $useragent,
             'cookie: ' . $in_cookies,
-            'user-agent: Instagram 9.0.1 (iPad2,5; iPhone OS 8_3; tr_TR; tr; scale=' . rand(0, 9) . '.' . rand(0, 9) . '' . rand(0, 9) . '; gamut=normal; ' . rand(0, 9) . '' . rand(0, 9) . '' . rand(0, 9) . 'x9' . rand(0, 9) . '' . rand(0, 9) . ') AppleWebKit/' . rand(0, 9) . '' . rand(0, 9) . '' . rand(0, 9)
+            //'user-agent: Instagram 9.0.1 (iPad2,5; iPhone OS 8_3; tr_TR; tr; scale=' . rand(0, 9) . '.' . rand(0, 9) . '' . rand(0, 9) . '; gamut=normal; ' . rand(0, 9) . '' . rand(0, 9) . '' . rand(0, 9) . 'x9' . rand(0, 9) . '' . rand(0, 9) . ') AppleWebKit/' . rand(0, 9) . '' . rand(0, 9) . '' . rand(0, 9)
         ));
     }
     if($data) {
