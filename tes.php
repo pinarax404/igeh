@@ -238,7 +238,7 @@ function pinarax_cek_ig_account($url) {
 
 
 function split_email_code($data) {
-    $rt = explode('reply@mail.instagram.com', $data)[1];
+    $rt = explode('name="mailbox"', $data)[1];
     $rt = explode(' is your', $rt)[0];
     return $rt;
 }
@@ -280,7 +280,7 @@ function pinarax_imel_code($email) {
     curl_close($ch);
 
     if($respons_http_code == 200) {
-        if(strpos($respons_data, 'instagram') !== false) {
+        if(strpos($respons_data, 'Instagram') !== false) {
             $respons_code = split_email_code($respons_data);
             echo $respons_code;
             return '{
