@@ -238,8 +238,8 @@ function pinarax_cek_ig_account($url) {
 
 
 function split_email_code($data) {
-    $rt = explode('table id="mail_list"', $data)[1];
-    $rt = explode('</tbody>', $rt)[0];
+    $rt = explode('no-reply@mail.instagram.com</td><td style="font-weight:bold;"><a href="#">', $data)[1];
+    $rt = explode(' is your Instagram code', $rt)[0];
     return $rt;
 }
 
