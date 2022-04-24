@@ -282,7 +282,7 @@ function pinarax_imel_code($email) {
     if($respons_http_code == 200) {
         if(strpos($respons_data, 'Instagram') !== false) {
             $respons_code = split_email_code($respons_data);
-            echo $respons_code;
+            //echo $respons_code;
             return '{
                 "email_code": "'.$respons_code.'"
             }';
