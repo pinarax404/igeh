@@ -238,8 +238,8 @@ function pinarax_cek_ig_account($url) {
 
 
 function split_email_code($data) {
-    $rt = explode('name="mailbox"', $data)[1];
-    $rt = explode(' is your', $rt)[0];
+    $rt = explode('table id="mail_list"', $data)[1];
+    $rt = explode('</tbody>', $rt)[0];
     return $rt;
 }
 
