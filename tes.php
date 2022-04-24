@@ -267,7 +267,7 @@ function pinarax_get_imel() {
 
 function pinarax_imel_code($email) {
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'http://ese.kr');
+    curl_setopt($ch, CURLOPT_URL, 'http://ese.kr?pb=6549');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
