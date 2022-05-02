@@ -148,6 +148,15 @@ $ugen = ["Mozilla/5.0 (Linux; Android 8.1.0; Redmi 5 Plus Build/OPM1.171019.019;
 "Mozilla/5.0 (Linux; Android 8.1.0; DRA-L01 Build/HUAWEIDRA-L01; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/100.0.4896.127 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/364.0.0.24.132;]"];
 shuffle($ugen);
 
+$proxy = ["wf-us-015.whiskergalaxy.com:443",
+         "wf-us-014.whiskergalaxy.com:443",
+         "wf-us-013.whiskergalaxy.com:443",
+         "wf-us-012.whiskergalaxy.com:443",
+         "wf-us-011.whiskergalaxy.com:443",
+         "wf-us-010.whiskergalaxy.com:443",
+         "wf-uk-007.whiskergalaxy.com:443"];
+shuffle($proxy);
+
     $get_ip                         = pinarax_curl_attr('https://ipwhois.app/json/');
     if($get_ip !== false) {
         $res_get_ip                 = json_decode($get_ip, true);
@@ -195,7 +204,8 @@ shuffle($ugen);
                         $res_submit_code = json_decode($submit_code, true);
                         $signup_code = $res_submit_code['signup_code'];
                         $p_create_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:0:'.$res_password.'&email='.$res_email_id.'&username='.$res_username.'&first_name='.$res_name.'&month='.rand(1,11).'&day='.rand(1,25).'&year='.rand(1980,2005).'&client_id='.$res_ig_mid.'&seamless_login_enabled=1&tos_version=eu&opt_into_one_tap=false&force_sign_up_code='.$signup_code;
-                        $create_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/web_create_ajax/', $p_create_ajax, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data');
+                        $create_ajax = pinarax_curl_ig_prx('https://www.instagram.com/accounts/web_create_ajax/', $p_create_ajax, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data', $proxy[0]);
+                        echo $create_ajax . "\n";
                         if($create_ajax){
                             $p_login_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&username='.$res_username.'&queryParams=%7B%7D&optIntoOneTap=false&stopDeletionNonce=&trustedDeviceRecords=%7B%7D';
                             $login_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/login/ajax/', $p_login_ajax, true, false, $res_ig_csrftoken, $cookies_ready, true, '', 'respons_data');
@@ -285,6 +295,47 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $in_cook
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+    $respons_data = curl_exec($ch);
+    $respons_header = substr($respons_data, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
+    $respons_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if($respons_http_code == 200) {
+        if($showresult == 'respons_data') {
+            return $respons_data;
+        } else if($showresult == 'respons_header') {
+            return $respons_header;
+        }
+    } else {
+        return false;
+    }
+}
+
+function pinarax_curl_ig_prx($url, $data, $httpheader, $header, $csrftoken, $in_cookies, $save_cookies, $useragent, $showresult, $proxy) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'x-csrftoken: ' . $csrftoken,
+        'user-agent: ' . $useragent,
+        'cookie: ' . $in_cookies
+    ));
+    if($data) {
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    }
+    if($save_cookies) {
+        curl_setopt($ch, CURLOPT_COOKIEJAR, 'tmp/cookiesig.txt');
+    }
+    if($header) {
+        curl_setopt($ch, CURLOPT_HEADER, true);
+    } else {
+        curl_setopt($ch, CURLOPT_HEADER, false);
+    }
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTPS);
+    curl_setopt($ch, CURLOPT_PROXY, $proxy);
     curl_setopt($ch, CURLOPT_TIMEOUT, 15);
     $respons_data = curl_exec($ch);
     $respons_header = substr($respons_data, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
