@@ -334,15 +334,6 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $in_cook
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
     if($proxy) {
-		if($ptype == '1') {
-			curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
-		} else if($ptype == '2') {
-			curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTPS);
-		} else if($ptype == '3') {
-			curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS4);
-		} else if($ptype == '4') {
-			curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
-		}
         curl_setopt($ch, CURLOPT_PROXY, $proxy);
     }
     curl_setopt($ch, CURLOPT_TIMEOUT, 15);
