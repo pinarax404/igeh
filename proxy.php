@@ -203,7 +203,7 @@ shuffle($ugen);
 
     $curl_cookies1                  = pinarax_curl_ig('https://www.instagram.com/data/shared_data/', false, false, false, '', '', true, '', 'respons_data', $ptype, $proxy);
     $curl_cookies2                  = pinarax_curl_ig('https://www.instagram.com/web/__mid/', false, false, false, '', '', false, '', 'respons_data', $ptype, $proxy);
-    $curl_user                      = pinarax_curl_attr('https://randomuser.me/api/?gender=female&nat=us', false, false);
+    $curl_user                      = pinarax_curl_attr('https://randomuser.me/api/?gender=female&nat=us', $ptype, $proxy);
     $curl_email                     = pinarax_get_imel();
     $time                           = time();
 
@@ -243,7 +243,7 @@ shuffle($ugen);
                         $create_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/web_create_ajax/', $p_create_ajax, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data', $ptype, $proxy);
 						if($create_ajax){
                             $p_login_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&username='.$res_username.'&queryParams=%7B%7D&optIntoOneTap=false&stopDeletionNonce=&trustedDeviceRecords=%7B%7D';
-                            $login_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/login/ajax/', $p_login_ajax, true, false, $res_ig_csrftoken, $cookies_ready, true, '', 'respons_data', false);
+                            $login_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/login/ajax/', $p_login_ajax, true, false, $res_ig_csrftoken, $cookies_ready, true, '', 'respons_data', $ptype, $proxy);
                             if($login_ajax) {
                                 $cek_ig_account = pinarax_cek_ig_account('https://www.instagram.com/' . $res_username . '/?__a=1');
                                 if($cek_ig_account !== false && strpos($cek_ig_account, 'profile_pic_url') !== false && strpos($cek_ig_account, 'username') !== false) {
