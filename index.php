@@ -39,7 +39,7 @@ function cek_code($email) {
 }
 
 function pinarax_start_create() {
-    $ugen = [""];
+    $ugen = ["Mozilla/5.0 (Linux; Android 6.0.1; SM-N910F Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/65.0.3325.109 Mobile Safari/537.36 Instagram 37.0.0.21.97 Android (23/6.0.1; 640dpi; 1440x2560; samsung; SM-N910F; trlte; qcom; pt_PT; 98288242)"];
     shuffle($ugen);
 
     $get_ip                         = pinarax_curl_attr('https://ipwhois.app/json/');
