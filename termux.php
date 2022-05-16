@@ -579,7 +579,7 @@ function pinarax_curl_attr($url, $proxy) {
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 	curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTPS);
 	curl_setopt($ch, CURLOPT_PROXY, $proxy);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
     $respons_data = curl_exec($ch);
     $respons_header = substr($respons_data, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
     $respons_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -618,7 +618,7 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $in_cook
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 	curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTPS);
 	curl_setopt($ch, CURLOPT_PROXY, $proxy);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
     $respons_data = curl_exec($ch);
     $respons_header = substr($respons_data, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
     $respons_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -641,7 +641,7 @@ function pinarax_cek_ig_account($url) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'origin: https://www.instagram.com',
         'authority: www.instagram.com',
@@ -682,7 +682,7 @@ function pinarax_get_imel() {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, 'http://ese.kr/?pb=6549');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
     curl_setopt($ch, CURLOPT_COOKIEJAR, 'tmp/cookiesimel.txt');
     curl_setopt($ch, CURLOPT_HEADER, 0);
     $respons_data = curl_exec($ch);
@@ -706,7 +706,7 @@ function pinarax_imel_code($email) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
     curl_setopt($ch, CURLOPT_COOKIEFILE, 'tmp/cookiesimel.txt');
     curl_setopt($ch, CURLOPT_POSTFIELDS, 'mail_id=&mail_mode=text&lang=en&mailbox=' . $email);
     curl_setopt($ch, CURLOPT_HEADER, 0);
