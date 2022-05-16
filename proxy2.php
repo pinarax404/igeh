@@ -347,7 +347,7 @@ function pinarax_imel_code($email) {
     curl_setopt($ch, CURLOPT_URL, 'https://10minutemail.net/address.api.php');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 15);
-    curl_setopt($ch, CURLOPT_COOKIEJAR, 'tmp/cookiesimel.txt');
+    curl_setopt($ch, CURLOPT_COOKIEFILE, 'tmp/cookiesimel.txt');
     curl_setopt($ch, CURLOPT_HEADER, 0);
     $respons_data = curl_exec($ch);
     $respons_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
