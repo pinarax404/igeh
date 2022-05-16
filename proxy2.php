@@ -318,7 +318,7 @@ function split_email_code($data) {
 
 function pinarax_get_imel() {
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://10minutemail.net/address.api.php');
+    curl_setopt($ch, CURLOPT_URL, 'https://10minutemail.net/address.api.php?new=1');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 15);
     curl_setopt($ch, CURLOPT_COOKIEJAR, 'tmp/cookiesimel.txt');
