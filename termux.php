@@ -3,42 +3,8 @@
 ini_set('display_errors', "0");
 system('clear');
 
-pinarax_start_create();
-
-function rplc_mode_create($start, $end, $data) {
-    $rt = explode($start, $data)[1];
-    $rt = explode($end, $rt)[0];
-    return $rt;
-}
-
-function cek_code($email) {
-    $cek_code = pinarax_imel_code($email);
-    if(strpos($cek_code, 'email_code') !== false) { $json = json_decode($cek_code, true); return $json['email_code']; } else if($cek_code == false) { return false; } else {
-        sleep(2);
-        $cek_code = pinarax_imel_code($email);
-        if(strpos($cek_code, 'email_code') !== false) { $json = json_decode($cek_code, true); return $json['email_code']; } else if($cek_code == false) { return false; } else {
-            sleep(2);
-            $cek_code = pinarax_imel_code($email);
-            if(strpos($cek_code, 'email_code') !== false) { $json = json_decode($cek_code, true); return $json['email_code']; } else if($cek_code == false) { return false; } else {
-                sleep(2);
-                $cek_code = pinarax_imel_code($email);
-                if(strpos($cek_code, 'email_code') !== false) { $json = json_decode($cek_code, true); return $json['email_code']; } else if($cek_code == false) { return false; } else {
-                    sleep(2);
-                    $cek_code = pinarax_imel_code($email);
-                    if(strpos($cek_code, 'email_code') !== false) { $json = json_decode($cek_code, true); return $json['email_code']; } else if($cek_code == false) { return false; } else {
-                        sleep(2);
-                        $cek_code = pinarax_imel_code($email);
-                        if(strpos($cek_code, 'email_code') !== false) { $json = json_decode($cek_code, true); return $json['email_code']; } else if($cek_code == false) { return false; } else {
-                            return false;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-function pinarax_start_create() {
+get_proxy();
+function get_proxy() {
 $proxy_lists = [
 	"uk26.tcdn.me:443",
 	"uk34.tcdn.me:443",
@@ -148,7 +114,44 @@ $proxy_lists = [
 ];
 shuffle($proxy_lists);
 
-$ugen = [
+pinarax_start_create($proxy_lists[0]);
+}
+
+function rplc_mode_create($start, $end, $data) {
+    $rt = explode($start, $data)[1];
+    $rt = explode($end, $rt)[0];
+    return $rt;
+}
+
+function cek_code($email) {
+    $cek_code = pinarax_imel_code($email);
+    if(strpos($cek_code, 'email_code') !== false) { $json = json_decode($cek_code, true); return $json['email_code']; } else if($cek_code == false) { return false; } else {
+        sleep(2);
+        $cek_code = pinarax_imel_code($email);
+        if(strpos($cek_code, 'email_code') !== false) { $json = json_decode($cek_code, true); return $json['email_code']; } else if($cek_code == false) { return false; } else {
+            sleep(2);
+            $cek_code = pinarax_imel_code($email);
+            if(strpos($cek_code, 'email_code') !== false) { $json = json_decode($cek_code, true); return $json['email_code']; } else if($cek_code == false) { return false; } else {
+                sleep(2);
+                $cek_code = pinarax_imel_code($email);
+                if(strpos($cek_code, 'email_code') !== false) { $json = json_decode($cek_code, true); return $json['email_code']; } else if($cek_code == false) { return false; } else {
+                    sleep(2);
+                    $cek_code = pinarax_imel_code($email);
+                    if(strpos($cek_code, 'email_code') !== false) { $json = json_decode($cek_code, true); return $json['email_code']; } else if($cek_code == false) { return false; } else {
+                        sleep(2);
+                        $cek_code = pinarax_imel_code($email);
+                        if(strpos($cek_code, 'email_code') !== false) { $json = json_decode($cek_code, true); return $json['email_code']; } else if($cek_code == false) { return false; } else {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+function pinarax_start_create($proxy) {
+    $ugen = [
 	"UCWEB/2.0 (Linux; U; Opera Mini/7.1.32052/30.3697; en-US; SM-G532G Build/MMB29T) U2/1.0.0 UCMini/10.9.0.946 (SpeedMode; Android 6.0.1; SM-G532G Build/MMB29T) Mobile",
 	"Mozilla/5.0 (Linux; U; Android 4.2.2; ru-ru; GT-I9060 Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30 UCBrowser/11.5.2.1188 (UCMini) Mobile",
 	"Mozilla/5.0 (Linux; Android 6.0.1; SM-G532G Build/MMB29T; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.105 Mobile Safari/537.36 UCBrowser/11.3.0.1130 (UCMini) Mobile",
@@ -236,7 +239,7 @@ $ugen = [
 ];
 shuffle($ugen);
 
-    $get_ip                         = pinarax_curl_attr('https://ipwhois.app/json/', '2', $proxy_lists[0]);
+    $get_ip                         = pinarax_curl_attr('https://ipwhois.app/json/', $proxy);
     if($get_ip !== false) {
         $res_get_ip                 = json_decode($get_ip, true);
         echo "\033[1;37mIP : " . $res_get_ip['ip'] . " | Country : " . $res_get_ip['country'] . "\033[1;37m\n";
@@ -244,9 +247,9 @@ shuffle($ugen);
         echo "\033[1;37mIP : null | Country : null\033[1;37m\n";
     }
 
-    $curl_cookies1                  = pinarax_curl_ig('https://www.instagram.com/data/shared_data/', false, false, false, '', '', true, '', 'respons_data', '2', $proxy_lists[0]);
-    $curl_cookies2                  = pinarax_curl_ig('https://www.instagram.com/web/__mid/', false, false, false, '', '', false, '', 'respons_data', '2', $proxy_lists[0]);
-    $curl_user                      = pinarax_curl_attr('https://randomuser.me/api/?gender=female&nat=us', '2', $proxy_lists[0]);
+    $curl_cookies1                  = pinarax_curl_ig('https://www.instagram.com/data/shared_data/', false, false, false, '', '', true, '', 'respons_data', $proxy);
+    $curl_cookies2                  = pinarax_curl_ig('https://www.instagram.com/web/__mid/', false, false, false, '', '', false, '', 'respons_data', $proxy);
+    $curl_user                      = pinarax_curl_attr('https://randomuser.me/api/?gender=female&nat=us', $proxy);
     $curl_email                     = pinarax_get_imel();
     $time                           = time();
 
@@ -265,12 +268,12 @@ shuffle($ugen);
         $res_email_id               = $json_generate_email['email'];
 
         $p_curl_username = 'name='.$res_name;
-        $curl_username = pinarax_curl_ig('https://www.instagram.com/accounts/username_suggestions/', $p_curl_username, true, false, $res_ig_csrftoken, $cookies_ready, false, '', 'respons_data', '2', $proxy_lists[0]);
+        $curl_username = pinarax_curl_ig('https://www.instagram.com/accounts/username_suggestions/', $p_curl_username, true, false, $res_ig_csrftoken, $cookies_ready, false, '', 'respons_data', $proxy);
         if($curl_username !== false  && strpos($curl_username, 'suggestions') !== false) {
             $res_curl_username = json_decode($curl_username, true);
             $res_username = $res_curl_username['suggestions'][0];
             $p_submit_email = 'device_id='.$res_ig_mid.'&email='.$res_email_id;
-            $submit_email = pinarax_curl_ig('https://i.instagram.com/api/v1/accounts/send_verify_email/', $p_submit_email, true, false, $res_ig_csrftoken, $cookies_ready, false, '', 'respons_data', '2', $proxy_lists[0]);
+            $submit_email = pinarax_curl_ig('https://i.instagram.com/api/v1/accounts/send_verify_email/', $p_submit_email, true, false, $res_ig_csrftoken, $cookies_ready, false, '', 'respons_data', $proxy);
             if($submit_email !== false && strpos($submit_email, 'email_sent') !== false) {
                 echo "\033[1;37mWaiting Email Code : ";
                 sleep(5);
@@ -278,15 +281,15 @@ shuffle($ugen);
                 if($cek_code !== false) {
                     echo $cek_code . "\033[1;37m\n";
                     $p_submit_code = 'code='.$cek_code.'&device_id='.$res_ig_mid.'&email='.$res_email_id;
-                    $submit_code = pinarax_curl_ig('https://i.instagram.com/api/v1/accounts/check_confirmation_code/', $p_submit_code, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data', '2', $proxy_lists[0]);
+                    $submit_code = pinarax_curl_ig('https://i.instagram.com/api/v1/accounts/check_confirmation_code/', $p_submit_code, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data', $proxy);
                     if($submit_code !== false  && strpos($submit_code, 'signup_code') !== false) {
                         $res_submit_code = json_decode($submit_code, true);
                         $signup_code = $res_submit_code['signup_code'];
-                        $p_create_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:0:'.$res_password.'&email='.$res_email_id.'&username='.$res_username.'&first_name='.$res_name.'&month=10&day='.rand(11, 25).'&year='.rand(1985, 2005).'&client_id='.$res_ig_mid.'&seamless_login_enabled=1&tos_version=eu&opt_into_one_tap=false&force_sign_up_code='.$signup_code;
-                        $create_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/web_create_ajax/', $p_create_ajax, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data', '2', $proxy_lists[0]);
-						if($create_ajax){
+                        $p_create_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:0:'.$res_password.'&email='.$res_email_id.'&username='.$res_username.'&first_name='.$res_name.'&month=10&day=21&year=2002&client_id='.$res_ig_mid.'&seamless_login_enabled=1&tos_version=eu&opt_into_one_tap=true&force_sign_up_code='.$signup_code;
+                        $create_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/web_create_ajax/', $p_create_ajax, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data', $proxy);
+                        if($create_ajax){
                             $p_login_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&username='.$res_username.'&queryParams=%7B%7D&optIntoOneTap=false&stopDeletionNonce=&trustedDeviceRecords=%7B%7D';
-                            $login_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/login/ajax/', $p_login_ajax, true, false, $res_ig_csrftoken, $cookies_ready, true, '', 'respons_data', '2', $proxy_lists[0]);
+                            $login_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/login/ajax/', $p_login_ajax, true, false, $res_ig_csrftoken, $cookies_ready, true, '', 'respons_data', $proxy);
                             if($login_ajax) {
                                 $cek_ig_account = pinarax_cek_ig_account('https://www.instagram.com/' . $res_username . '/?__a=1');
                                 if($cek_ig_account !== false && strpos($cek_ig_account, 'profile_pic_url') !== false && strpos($cek_ig_account, 'username') !== false) {
@@ -294,60 +297,50 @@ shuffle($ugen);
                                     echo "\033[1;32m✔ \033[1;37mUsername : \033[1;32m" . $res_username. "\033[1;37m\n";
                                     echo "\033[1;32m✔ \033[1;37mEmail : \033[1;32m" . $res_email_id. "\033[1;37m\n";
                                     echo "\033[1;37m========================================\033[1;37m\n";
-                                    file_put_contents("akun.txt", $res_email_id . " | " . $res_username . " | " . $res_password . "\n", FILE_APPEND);
-                                    pinarax_start_create();
+                                    file_put_contents("akun.txt", $res_username . " | " . $res_password . "\n", FILE_APPEND);
+                                    get_proxy();
                                 } else {
                                     echo "\033[1;33m✘ \033[1;37mCreate : \033[1;33mCheckpoint\033[1;37m\n";
                                     echo "\033[1;33m✘ \033[1;37mUsername : \033[1;33m" . $res_username. "\033[1;37m\n";
                                     echo "\033[1;33m✘ \033[1;37mEmail : \033[1;33m" . $res_email_id. "\033[1;37m\n";
                                     echo "\033[1;37m========================================\033[1;37m\n";
-                                    pinarax_start_create();
+                                    get_proxy();
                                 }
                             } else {
-                               pinarax_start_create();
+                               get_proxy();
                             }
                         } else {
-                            pinarax_start_create();
+                            get_proxy();
                         }
                     } else {
-                        pinarax_start_create();
+                        get_proxy();
                     }
                 } else {
                     echo "\033[1;31mFailed\033[1;37m\n";
-                    pinarax_start_create();
+                    get_proxy();
                 }
             } else {
                 echo "\033[1;31mError Submitting Email...\033[1;37m\n";
-                pinarax_start_create();
+                get_proxy();
             }
         } else {
-            pinarax_start_create();
+            get_proxy();
         }
     } else {
-        pinarax_start_create();
+        get_proxy();
     }
 }
 
-function pinarax_curl_attr($url, $ptype, $proxy) {
+function pinarax_curl_attr($url, $proxy) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    if($proxy) {
-		if($ptype == '1') {
-			curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
-		} else if($ptype == '2') {
-			curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTPS);
-		} else if($ptype == '3') {
-			curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS4);
-		} else if($ptype == '4') {
-			curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
-		}
-        curl_setopt($ch, CURLOPT_PROXY, $proxy);
-    }
-    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
+	curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTPS);
+	curl_setopt($ch, CURLOPT_PROXY, $proxy);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
     $respons_data = curl_exec($ch);
     $respons_header = substr($respons_data, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
     $respons_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -360,14 +353,14 @@ function pinarax_curl_attr($url, $ptype, $proxy) {
     }
 }
 
-function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $in_cookies, $save_cookies, $useragent, $showresult, $ptype, $proxy) {
+function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $in_cookies, $save_cookies, $useragent, $showresult, $proxy) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     if($httpheader) {
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'x-csrftoken: ' . $csrftoken,
             'user-agent: ' . $useragent,
-			'cookie: ' . $in_cookies
+            'cookie: ' . $in_cookies
         ));
     }
     if($data) {
@@ -384,19 +377,9 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $in_cook
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    if($proxy) {
-		if($ptype == '1') {
-			curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
-		} else if($ptype == '2') {
-			curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTPS);
-		} else if($ptype == '3') {
-			curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS4);
-		} else if($ptype == '4') {
-			curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
-		}
-        curl_setopt($ch, CURLOPT_PROXY, $proxy);
-    }
-    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
+	curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTPS);
+	curl_setopt($ch, CURLOPT_PROXY, $proxy);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
     $respons_data = curl_exec($ch);
     $respons_header = substr($respons_data, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
     $respons_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -419,7 +402,7 @@ function pinarax_cek_ig_account($url) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'origin: https://www.instagram.com',
         'authority: www.instagram.com',
@@ -451,16 +434,16 @@ function pinarax_cek_ig_account($url) {
 
 
 function split_email_code($data) {
-    $rt = explode('"subject":"', $data)[1];
+    $rt = explode('no-reply@mail.instagram.com</td><td style="font-weight:bold;"><a href="#">', $data)[1];
     $rt = explode(' is your Instagram code', $rt)[0];
     return $rt;
 }
 
 function pinarax_get_imel() {
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://10minutemail.net/address.api.php?new=1');
+    curl_setopt($ch, CURLOPT_URL, 'http://ese.kr/?pb=6549');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
     curl_setopt($ch, CURLOPT_COOKIEJAR, 'tmp/cookiesimel.txt');
     curl_setopt($ch, CURLOPT_HEADER, 0);
     $respons_data = curl_exec($ch);
@@ -468,11 +451,11 @@ function pinarax_get_imel() {
     curl_close($ch);
 
     if($respons_http_code == 200) {
-		$em = explode('"mail_get_mail":"', $respons_data)[1];
-		$em = explode('","', $em)[0];
-		return '{
-			"email": "'.$em.'"
-		}';
+        $em = explode('<input type="search" name="mailbox" value="', $respons_data)[1];
+        $em = explode('"', $em)[0];
+        return '{
+            "email": "'.$em.'"
+        }';
     } else {
         return false;
     }
@@ -480,10 +463,13 @@ function pinarax_get_imel() {
 
 function pinarax_imel_code($email) {
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://10minutemail.net/address.api.php');
+    curl_setopt($ch, CURLOPT_URL, 'http://ese.kr/');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
     curl_setopt($ch, CURLOPT_COOKIEFILE, 'tmp/cookiesimel.txt');
+    curl_setopt($ch, CURLOPT_POSTFIELDS, 'mail_id=&mail_mode=text&lang=en&mailbox=' . $email);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     $respons_data = curl_exec($ch);
     $respons_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -492,6 +478,7 @@ function pinarax_imel_code($email) {
     if($respons_http_code == 200) {
         if(strpos($respons_data, 'Instagram') !== false) {
             $respons_code = split_email_code($respons_data);
+            //echo $respons_code;
             return '{
                 "email_code": "'.$respons_code.'"
             }';
