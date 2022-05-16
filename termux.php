@@ -474,6 +474,7 @@ function pinarax_get_imel() {
             return '{
                 "email": "'.$em.'"
             }';
+			echo $em;
         } else {
             return false;
         }
