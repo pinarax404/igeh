@@ -3,7 +3,7 @@
 ini_set('display_errors', "0");
 system('clear');
 
-pinarax_start_create('4', 'localhost:9050')
+pinarax_start_create('4', 'localhost:9050');
 
 function rplc_mode_create($start, $end, $data) {
     $rt = explode($start, $data)[1];
