@@ -3,12 +3,6 @@
 ini_set('display_errors', "0");
 system('clear');
 
-echo "\033[1;32m ____  __  __ _   __   ____   __   _  _ 
-(  _ \(  )(  ( \ / _\ (  _ \ / _\ ( \/ )
- ) __/ )( /    //    \ )   //    \ )  ( 
-(__)  (__)\_)__)\_/\_/(__\_)\_/\_/(_/\_)\033[1;37m\n";
-echo "\033[1;37m========================================\033[1;37m\n";
-
 echo '1. HTTP' . PHP_EOL . '2. HTTPS' . PHP_EOL . '3. SOCKS4' . PHP_EOL . '4. SOCKS5' . PHP_EOL;
 $prxtype = fopen('php://stdin', 'rb');
 $prxtypeline   = fgets($prxtype);
@@ -92,56 +86,90 @@ function cek_code($email) {
 
 function pinarax_start_create($ptype, $proxy) {
 $ugen = [
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 OPR/82.0.4227.50",
-	"Opera/9.80 (Windows NT 6.1; WOW64) Presto/2.12.388 Version/12.18",
-	"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36 OPR/43.0.2442.991",
-	"Opera/9.80 (Linux armv7l) Presto/2.12.407 Version/12.51 , D50u-D1-UHD/V1.5.16-UHD (Vizio, D50u-D1, Wireless)",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36 OPR/80.0.4170.63",
-	"Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.14",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 OPR/56.0.3051.52",
-	"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36 OPR/42.0.2393.94",
-	"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36 OPR/36.0.2130.32",
-	"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36 OPR/43.0.2442.991",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 OPR/82.0.4227.43",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36 OPR/82.0.4227.33",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36 OPR/81.0.4196.61",
-	"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3198.0 Safari/537.36 OPR/49.0.2711.0",
-	"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36 OPR/42.0.2393.94",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 OPR/82.0.4227.58",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.186",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36 OPR/81.0.4196.60",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36 OPR/47.0.2631.39",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36 OPR/48.0.2685.52",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.27",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36 OPR/52.0.2871.99",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36 OPR/78.0.4093.184",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36 OPR/66.0.3515.72",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36 OPR/82.0.4227.23",
-	"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36 OPR/36.0.2130.80",
-	"Opera/9.80 (Windows NT 5.1; U; ru) Presto/2.9.168 Version/11.50",
-	"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36 OPR/34.0.2036.25",
-	"Opera/9.80 (Windows NT 5.1; WOW64) Presto/2.12.388 Version/12.17",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.109 Safari/537.36 OPR/84.0.4316.31",
-	"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 8.50",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36 OPR/80.0.4170.72",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36 OPR/66.0.3515.44",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.46",
-	"Opera/9.80 (Windows NT 6.2; Win64; x64) Presto/2.12.388 Version/12.16",
-	"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36 OPR/52.0.2871.99",
-	"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36 OPR/34.0.2036.25",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.70",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.170 Safari/537.36 OPR/53.0.2907.99",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36 OPR/79.0.4143.72",
-	"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36 OPR/33.0.1990.115",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.109 Safari/537.36 OPR/84.0.4316.42",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36 OPR/80.0.4170.61",
-	"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36 OPR/43.0.2442.1144",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36 OPR/65.0.3467.78",
-	"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36 OPR/48.0.2685.52",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36 OPR/81.0.4196.52",
-	"Mozilla/5.0 (Linux; Android 8.1.0; CPH1803 Build/OPM1.171019.026) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.116 Mobile Safari/537.36 OPR/44.6.2246.127414",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36 OPR/79.0.4143.73",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 OPR/84.0.4316.21"
+	"UCWEB/2.0 (Linux; U; Opera Mini/7.1.32052/30.3697; en-US; SM-G532G Build/MMB29T) U2/1.0.0 UCMini/10.9.0.946 (SpeedMode; Android 6.0.1; SM-G532G Build/MMB29T) Mobile",
+	"Mozilla/5.0 (Linux; U; Android 4.2.2; ru-ru; GT-I9060 Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 6.0.1; SM-G532G Build/MMB29T; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.105 Mobile Safari/537.36 UCBrowser/11.3.0.1130 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 10; Redmi 7 Build/QKQ1.191008.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/94.0.4606.85 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 8.1.0; itel P32 Build/O11019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/96.0.4664.45 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; U; Android 4.2.2; en-us; S5E Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1.1; SM-J120F Build/LMY47X; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/55.0.2883.91 Mobile Safari/537.36 UCBrowser/11.4.1.1138 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 8.1.0; vivo 1820 Build/O11019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/91.0.4472.120 Mobile Safari/537.36 UCBrowser/11.4.0.1180 (UCMini) Mobile",
+	"UCWEB/2.0 (Linux; U; Opera Mini/7.1.32052/30.3697; US) U2/1.0.0 UCMini/11.5.2.1188 U2/1.0.0 Mobile",
+	"Mozilla/5.0 (Linux; Android 10; Redmi Note 9 Pro Max Build/QKQ1.191215.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.101 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 9; LT-NOTE 10S Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/92.0.4515.115 Mobile Safari/537.36 UCBrowser/11.4.1.1138 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 7.0; S40 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.101 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 7.0; IF9003 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/91.0.4472.120 Mobile Safari/537.36 UCBrowser/11.5.3.1189 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 9; STG S30 Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.75 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 10; Redmi Note 9 Pro Max Build/QKQ1.191215.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.101 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 10; V2026 Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/90.0.4430.91 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 11; AC2001 Build/RP1A.201005.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/90.0.4430.66 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; U; Android 4.1.2; ru-ru; GT-I8190 Build/JZO54K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 10; Redmi 7 Build/QKQ1.191008.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.101 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 4.4.4; SM-G7200 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 7.0; 5060 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/67.0.3396.87 Mobile Safari/537.36 UCBrowser/11.4.1.1138 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 9; LM-X120 Build/PKQ1.180904.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.141 Mobile Safari/537.36 UCBrowser/11.4.1.1138 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1.1; F1fw Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.96 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 6.0.1; SM-G532G Build/MMB29T; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/55.0.2883.91 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 8.1.0; TECNO B1f Build/O11019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.110 Mobile Safari/537.36 UCBrowser/11.4.1.1138 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1.1; SM-J120F Build/LMY47X; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/55.0.2883.91 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 7.1.2; HM 1SW Build/NJH47F; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/67.0.3396.87 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 4.4.2; ASUS_Z007 Build/KVT49L) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 9; ONEPLUS A5010 Build/PKQ1.180716.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.66 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 9; LM-X420 Build/PKQ1.190522.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.185 Mobile Safari/537.36 UCBrowser/11.4.1.1138 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 10; Redmi Note 8 Pro Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/85.0.4183.101 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.0.2; SM-A300F Build/LRX22G; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.80 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 7.0; BQru_BQru-5058 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/68.0.3440.91 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.0; Lenovo K50-t5 Build/LRX21M) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/37.0.0.0 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 7.0; T5c Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/69.0.3497.100 Mobile Safari/537.36 UCBrowser/11.4.1.1138 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 6.0.1; SM-G532F Build/MMB29T; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/55.0.2883.91 Mobile Safari/537.36 UCBrowser/11.5.3.1189 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1.1; SM-J111F Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/55.0.2883.91 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 8.0.0; moto e5 Build/OPPS27.91-176-11-16; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.185 Mobile Safari/537.36 UCBrowser/11.4.0.1180 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.0.2; vivo Y31 Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/37.0.0.0 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 4.4.4; 2014811 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 6.0.1; SM-G532G Build/MMB29T; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/56.0.2924.87 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; U; Android 4.3; uz-uz; NokiaX2DS Build/JLS36C) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 6.0.1; SM-G532F Build/MMB29T; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/56.0.2924.87 Mobile Safari/537.36 UCBrowser/11.4.0.1180 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 6.0.1; LS-5016 Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/50.0.2661.86 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 8.1.0; CPH1819 Build/O11019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.111 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 9; SM-G611FF Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.136 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 8.1.0; Redmi 5A Build/OPM1.171019.026; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/71.0.3578.99 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1; 1201 Build/LMY47I; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.121 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 9; Redmi Note 5 Pro Build/PKQ1.180904.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/81.0.4044.111 Mobile Safari/537.36 UCBrowser/11.4.1.1138 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 7.1.2; Redmi 5 Plus Build/N2G47H; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; U; Android 4.1.2; id-id; GT-S6810 Build/JZO54K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"UCWEB/2.0 (Linux; U; Opera Mini/7.1.32052/30.3697; es-LA; F3113 Build/33.3.A.0.131) U2/1.0.0 UCMini/10.9.0.946 (SpeedMode; Android 7.0; F3113 Build/33.3.A.0.131) Mobile",
+	"Mozilla/5.0 (Linux; Android 4.4.2; F-01F Build/V10R22A) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36 UCBrowser/11.4.1.1138 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 7.0; Micromax Q402+ Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/64.0.3282.137 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 8.1.0; SM-J701F Build/M1AJQ; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/67.0.3396.87 Mobile Safari/537.36 UCBrowser/11.4.1.1138 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1; XT1033 Build/LPBS23.13-56-2; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.132 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; U; Android 4.1.2; en-gb; GT-S7392 Build/JZO54K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1.1; Mi-4c Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.96 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 7.0; Moto C Build/NRD90M.043; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/81.0.4044.111 Mobile Safari/537.36 UCBrowser/11.4.1.1138 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 9; Redmi Note 7 Pro Build/PKQ1.181203.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.99 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1; Lenovo A2010-a Build/LMY47D; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/67.0.3396.87 Mobile Safari/537.36 UCBrowser/11.4.0.1180 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 6.0; XT1068 Build/MPB24.65-34-3; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/45.0.2454.95 Mobile Safari/537.36 UCBrowser/11.4.1.1138 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1.1; A37f Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/81.0.4044.117 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 9; RMX1941 Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.111 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 7.0; Redmi Note 4 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/75.0.3770.101 Mobile Safari/537.36 UCBrowser/11.4.1.1138 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1.1; ASUS_X00BD Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/46.0.2490.76 Mobile Safari/537.36 UCBrowser/11.3.0.1130 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1.1; SM-J200G Build/LMY47X; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/56.0.2924.87 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 8.0.0; SM-G570M Build/R16NW; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.110 Mobile Safari/537.36 UCBrowser/11.4.1.1138 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 7.0; 5060 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/72.0.3626.121 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 10; SM-N975F Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.149 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1; HUAWEI TIT-U02 Build/HUAWEITIT-U02; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/72.0.3626.121 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1; Atom 2X Build/LMY47D; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.111 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 6.0.1; Le X526 Build/IIXOSOP5801910121S; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/49.0.2623.91 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1.1; A37fw Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.111 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 7.0; A1 lite Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/56.0.2924.87 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 5.1; Infinix X510 Build/LMY47I) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/39.0.0.0 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 7.0; A1 lite Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.110 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 10; Infinix X604 Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.119 Mobile Safari/537.36 UCBrowser/11.5.3.1189 (UCMini) Mobile",
+	"Mozilla/5.0 (Linux; Android 7.0; SM-G615FU Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/64.0.3282.137 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+	"UCWEB/2.0 (Linux; U; Opera Mini/7.1.32052/30.3697; pt-BR; 5017A Build/LMY47D) U2/1.0.0 UCMini/10.9.0.946 (SpeedMode; Android 5.1; 5017A Build/LMY47D) Mobile",
+	"UCWEB/2.0 (Linux; U; Opera Mini/7.1.32052/30.3697; pt-BR; VF685 Build/KOT49H) U2/1.0.0 UCMini/10.9.0.946 (SpeedMode; Android 4.4.2; VF685 Build/KOT49H) Mobile",
+	"UCWEB/2.0 (Linux; U; Opera Mini/7.1.32052/30.3697; pt-BR; Coolpad 8297-T01 Build/KTU84P) U2/1.0.0 UCMini/10.9.0.946 (SpeedMode; Android 4.4.4; Coolpad 8297-T01 Build/KTU84P) Mobile",
+	"UCWEB/2.0 (Linux; U; Opera Mini/7.1.32052/30.3697; en-US; Lenny4 Build/NRD90M) U2/1.0.0 UCMini/10.9.0.946 (SpeedMode; Android 7.0; Lenny4 Build/NRD90M) Mobile",
+	"UCWEB/2.0 (Linux; U; Opera Mini/7.1.32052/30.3697; ru; Android Build/KOT49H) U2/1.0.0 UCMini/10.9.0.946 (SpeedMode; Android 4.4.2; Android Build/KOT49H) Mobile"
 ];
 shuffle($ugen);
 
@@ -191,8 +219,8 @@ shuffle($ugen);
                     if($submit_code !== false  && strpos($submit_code, 'signup_code') !== false) {
                         $res_submit_code = json_decode($submit_code, true);
                         $signup_code = $res_submit_code['signup_code'];
-                        $p_create_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:0:'.$res_password.'&email='.$res_email_id.'&username='.$res_username.'&first_name='.$res_name.'&month=10&day=21&year=2002&client_id='.$res_ig_mid.'&seamless_login_enabled=1&tos_version=eu&opt_into_one_tap=true&force_sign_up_code='.$signup_code;
-                        $create_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/web_create_ajax/', $p_create_ajax, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data', $ptype, $proxy);
+                        $p_create_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:0:'.$res_password.'&email='.$res_email_id.'&username='.$res_username.'&first_name='.$res_name.'&month=10&day='.rand(11, 25).'&year='.rand(1985, 2005).'&client_id='.$res_ig_mid.'&seamless_login_enabled=1&tos_version=eu&opt_into_one_tap=false&force_sign_up_code='.$signup_code;
+                        $create_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/web_create_ajax/', $p_create_ajax, true, false, $res_ig_csrftoken, $cookies_ready, true, $user_agent, 'respons_data', $ptype, $proxy);
 						if($create_ajax){
                             $p_login_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&username='.$res_username.'&queryParams=%7B%7D&optIntoOneTap=false&stopDeletionNonce=&trustedDeviceRecords=%7B%7D';
                             $login_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/login/ajax/', $p_login_ajax, true, false, $res_ig_csrftoken, $cookies_ready, true, '', 'respons_data', $ptype, $proxy);
@@ -275,8 +303,7 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $in_cook
     if($httpheader) {
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'x-csrftoken: ' . $csrftoken,
-            'user-agent: ' . $useragent,
-            'cookie: ' . $in_cookies
+            'user-agent: ' . $useragent
         ));
     }
     if($data) {
@@ -284,7 +311,9 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $in_cook
     }
     if($save_cookies) {
         curl_setopt($ch, CURLOPT_COOKIEJAR, 'tmp/cookiesig.txt');
-    }
+    } else {
+		curl_setopt($ch, CURLOPT_COOKIEFILE, 'tmp/cookiesig.txt');
+	}
     if($header) {
         curl_setopt($ch, CURLOPT_HEADER, true);
     } else {
@@ -360,14 +389,14 @@ function pinarax_cek_ig_account($url) {
 
 
 function split_email_code($data) {
-    $rt = explode('no-reply@mail.instagram.com</td><td style="font-weight:bold;"><a href="#">', $data)[1];
+    $rt = explode('"subject":"', $data)[1];
     $rt = explode(' is your Instagram code', $rt)[0];
     return $rt;
 }
 
 function pinarax_get_imel() {
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'http://ese.kr/?pb=6549');
+    curl_setopt($ch, CURLOPT_URL, 'https://10minutemail.net/address.api.php?new=1');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 15);
     curl_setopt($ch, CURLOPT_COOKIEJAR, 'tmp/cookiesimel.txt');
@@ -377,11 +406,15 @@ function pinarax_get_imel() {
     curl_close($ch);
 
     if($respons_http_code == 200) {
-        $em = explode('<input type="search" name="mailbox" value="', $respons_data)[1];
-        $em = explode('"', $em)[0];
-        return '{
-            "email": "'.$em.'"
-        }';
+        if(strpos($respons_data, 'mail_get_mail') !== false) {
+            $em = explode('"mail_get_mail":"', $respons_data)[1];
+            $em = explode('","', $em)[0];
+            return '{
+                "email": "'.$em.'"
+            }';
+        } else {
+            return false;
+        }
     } else {
         return false;
     }
@@ -389,13 +422,10 @@ function pinarax_get_imel() {
 
 function pinarax_imel_code($email) {
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'http://ese.kr/');
+    curl_setopt($ch, CURLOPT_URL, 'https://10minutemail.net/address.api.php');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 15);
     curl_setopt($ch, CURLOPT_COOKIEFILE, 'tmp/cookiesimel.txt');
-    curl_setopt($ch, CURLOPT_POSTFIELDS, 'mail_id=&mail_mode=text&lang=en&mailbox=' . $email);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     $respons_data = curl_exec($ch);
     $respons_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -404,7 +434,6 @@ function pinarax_imel_code($email) {
     if($respons_http_code == 200) {
         if(strpos($respons_data, 'Instagram') !== false) {
             $respons_code = split_email_code($respons_data);
-            //echo $respons_code;
             return '{
                 "email_code": "'.$respons_code.'"
             }';
