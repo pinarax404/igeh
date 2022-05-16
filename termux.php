@@ -466,19 +466,14 @@ function pinarax_get_imel() {
     $respons_data = curl_exec($ch);
     $respons_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
-	
-	echo $respons_data;
 
     if($respons_http_code == 200) {
-        if(strpos($respons_data, 'mail_get_mail') !== false) {
-            $em = explode('"mail_get_mail":"', $respons_data)[1];
-            $em = explode('","', $em)[0];
-            return '{
-                "email": "'.$em.'"
-            }';
-        } else {
-            return false;
-        }
+		$em = explode('"mail_get_mail":"', $respons_data)[1];
+		$em = explode('","', $em)[0];
+		echo $em;
+		return '{
+			"email": "'.$em.'"
+		}';
     } else {
         return false;
     }
