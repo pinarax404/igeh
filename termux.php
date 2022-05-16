@@ -347,7 +347,7 @@ function pinarax_curl_attr($url, $ptype, $proxy) {
 		}
         curl_setopt($ch, CURLOPT_PROXY, $proxy);
     }
-    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
     $respons_data = curl_exec($ch);
     $respons_header = substr($respons_data, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
     $respons_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -396,7 +396,7 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $in_cook
 		}
         curl_setopt($ch, CURLOPT_PROXY, $proxy);
     }
-    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
     $respons_data = curl_exec($ch);
     $respons_header = substr($respons_data, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
     $respons_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -419,7 +419,7 @@ function pinarax_cek_ig_account($url) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'origin: https://www.instagram.com',
         'authority: www.instagram.com',
@@ -460,7 +460,7 @@ function pinarax_get_imel() {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, 'https://10minutemail.net/address.api.php?new=1');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
     curl_setopt($ch, CURLOPT_COOKIEJAR, 'tmp/cookiesimel.txt');
     curl_setopt($ch, CURLOPT_HEADER, 0);
     $respons_data = curl_exec($ch);
@@ -470,7 +470,6 @@ function pinarax_get_imel() {
     if($respons_http_code == 200) {
 		$em = explode('"mail_get_mail":"', $respons_data)[1];
 		$em = explode('","', $em)[0];
-		echo $em;
 		return '{
 			"email": "'.$em.'"
 		}';
@@ -483,7 +482,7 @@ function pinarax_imel_code($email) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, 'https://10minutemail.net/address.api.php');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 25);
     curl_setopt($ch, CURLOPT_COOKIEFILE, 'tmp/cookiesimel.txt');
     curl_setopt($ch, CURLOPT_HEADER, 0);
     $respons_data = curl_exec($ch);
