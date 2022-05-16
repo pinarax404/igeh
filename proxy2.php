@@ -3,59 +3,7 @@
 ini_set('display_errors', "0");
 system('clear');
 
-echo "\033[1;32m ____  __  __ _   __   ____   __   _  _ 
-(  _ \(  )(  ( \ / _\ (  _ \ / _\ ( \/ )
- ) __/ )( /    //    \ )   //    \ )  ( 
-(__)  (__)\_)__)\_/\_/(__\_)\_/\_/(_/\_)\033[1;37m\n";
-echo "\033[1;37m========================================\033[1;37m\n";
-
-echo '1. HTTP' . PHP_EOL . '2. HTTPS' . PHP_EOL . '3. SOCKS4' . PHP_EOL . '4. SOCKS5' . PHP_EOL;
-$prxtype = fopen('php://stdin', 'rb');
-$prxtypeline   = fgets($prxtype);
-if(trim($prxtypeline) == '1') {
-        echo 'masukkan host:port' . PHP_EOL;
-        $handle = fopen('php://stdin', 'rb');
-        $line   = fgets($handle);
-        if(trim($line) !== null) {
-                pinarax_start_create('1', trim($line));
-        } else {
-                die();
-        }
-        fclose($handle);
-} else if(trim($prxtypeline) == '2') {
-        echo 'masukkan host:port' . PHP_EOL;
-        $handle = fopen('php://stdin', 'rb');
-        $line   = fgets($handle);
-        if(trim($line) !== null) {
-                pinarax_start_create('2', trim($line));
-        } else {
-                die();
-        }
-        fclose($handle);
-} else if(trim($prxtypeline) == '3') {
-        echo 'masukkan host:port' . PHP_EOL;
-        $handle = fopen('php://stdin', 'rb');
-        $line   = fgets($handle);
-        if(trim($line) !== null) {
-                pinarax_start_create('3', trim($line));
-        } else {
-                die();
-        }
-        fclose($handle);
-} else if(trim($prxtypeline) == '4') {
-        echo 'masukkan host:port' . PHP_EOL;
-        $handle = fopen('php://stdin', 'rb');
-        $line   = fgets($handle);
-        if(trim($line) !== null) {
-                pinarax_start_create('4', trim($line));
-        } else {
-                die();
-        }
-        fclose($handle);
-} else {
-        die();
-}
-fclose($prxtype);
+pinarax_start_create('4', 'localhost:9050')
 
 function rplc_mode_create($start, $end, $data) {
     $rt = explode($start, $data)[1];
