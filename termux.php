@@ -466,6 +466,8 @@ function pinarax_get_imel() {
     $respons_data = curl_exec($ch);
     $respons_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
+	
+	echo $respons_data;
 
     if($respons_http_code == 200) {
         if(strpos($respons_data, 'mail_get_mail') !== false) {
@@ -474,7 +476,6 @@ function pinarax_get_imel() {
             return '{
                 "email": "'.$em.'"
             }';
-			echo $em;
         } else {
             return false;
         }
