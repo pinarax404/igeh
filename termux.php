@@ -154,7 +154,6 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $save_co
     curl_setopt($ch, CURLOPT_URL, $url);
     if($httpheader) {
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'Host: www.instagram.com',
 			'x-csrftoken: ' . $csrftoken,
 			'X-Instagram-AJAX: 1',
 			'X-Requested-With: XMLHttpRequest',
