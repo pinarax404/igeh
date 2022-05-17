@@ -159,7 +159,7 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $save_co
 			'x-csrftoken: ' . $csrftoken,
 			'x-ig-www-claim: 0',
 			'x-instagram-ajax: 9bcc5b5208c5',
-			'user-agent: [FBAN/FB4A;FBAV/222.0.0.48.113;FBBV/155323366;FBDM/{density=2.0,width=720,height=1360};FBLC/sr_RS;FBRV/156625696;FBCR/mt:s;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/LDN-L21;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]'
+			'user-agent: Instagram 93.1.0.19.102 Android (21/5.0.2; 240dpi; 540x960; samsung; SM-G530H; fortuna3g; qcom; ar_AE; 154400379'
         ));
     }
     if($data) {
