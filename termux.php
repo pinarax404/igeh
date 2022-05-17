@@ -84,7 +84,7 @@ function pinarax_start_create() {
                         $res_submit_code = json_decode($submit_code, true);
                         $signup_code = $res_submit_code['signup_code'];
                         $p_create_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&email='.$res_email_id.'&username='.$res_name.'&first_name=anna&month='.rand(1,12).'&day='.rand(1,30).'&year='.rand(1990,2005).'&client_id='.$res_ig_mid.'&seamless_login_enabled=1&tos_version=eu&force_sign_up_code='.$signup_code;
-						$create_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/web_create_ajax/?hl=id', $p_create_ajax, true, false, $res_ig_csrftoken, false, 'respons_data');
+						$create_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/web_create_ajax/attempt/', $p_create_ajax, true, false, $res_ig_csrftoken, false, 'respons_data');
                         if($create_ajax){
                             $p_login_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&username='.$res_username.'&queryParams=%7B%7D&optIntoOneTap=false&stopDeletionNonce=&trustedDeviceRecords=%7B%7D';
                             $login_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/login/ajax/', $p_login_ajax, true, false, $res_ig_csrftoken, true, 'respons_data');
@@ -160,7 +160,7 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $save_co
 			'x-ig-www-claim: 0',
 			'x-instagram-ajax: 9bcc5b5208c5',
 			'method: POST',
-			'user-agent: Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0'
+			'user-agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36'
         ));
     }
     if($data) {
