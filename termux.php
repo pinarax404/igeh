@@ -162,7 +162,7 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $save_co
 			'x-ig-www-claim: 0',
 			'x-instagram-ajax: 9bcc5b5208c5',
             'x-csrftoken: ' . $csrftoken,
-			'user-agent: Mozilla/5.0 (PlayBook; U; RIM Tablet OS 2.1.0; en-US) AppleWebKit/536.2+ (KHTML, like Gecko) Version/7.2.1.0 Safari/536.2+'
+			'user-agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0'
         ));
     }
     if($data) {
