@@ -218,7 +218,7 @@ function pinarax_cek_ig_account($url) {
         "Referer: https://www.instagram.com",
         'Connection: keep-alive',
         'cache-control: max-age=0',
-        'user-agent: Mozilla/5.0 (Linux; U; Android 2.3.6; fa-fa; GT-S5570I Build/GINGERBREAD) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
+        'user-agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0',
     ));
     curl_setopt($ch, CURLOPT_COOKIEFILE, 'tmp/cookiesig.txt');
     $respons_data = curl_exec($ch);
