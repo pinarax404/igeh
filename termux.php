@@ -161,7 +161,8 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $save_co
 			'x-ig-app-id: 936619743392459',
 			'x-ig-www-claim: 0',
 			'x-instagram-ajax: 9bcc5b5208c5',
-            'x-csrftoken: ' . $csrftoken
+            'x-csrftoken: ' . $csrftoken,
+			'user-agent: Mozilla/5.0 (Linux; Android 9; SM-A102U Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.136 Mobile Safari/537.36 Instagram 155.0.0.37.107 Android (28/9; 320dpi; 720x1468; samsung; SM-A102U; a10e; exynos7885; en_US; 239490550)'
         ));
     }
     if($data) {
