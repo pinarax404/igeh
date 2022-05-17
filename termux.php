@@ -159,7 +159,7 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $save_co
 			'X-Instagram-AJAX: 1',
 			'X-Requested-With: XMLHttpRequest',
 			'Referer: https://www.instagram.com/',
-			'user-agent: Mozilla/5.0 (iPhone; CPU iPhone OS '.rand(000, 999).' like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 [FBAN/FBIOS;FBDV/iPhone9,1;FBMD/iPhone;FBSN/iOS;FBSV/13.5.1;FBSS/2;FBID/phone;FBLC/en_US;FBOP/5]'
+			'user-agent: Mozilla/4.0 (compatible; MSIE 6.0; AOL 9.0; Windows NT 5.1; SV1; .NET CLR 1.1.'.rand(0000,9999).')'
         ));
     }
     if($data) {
