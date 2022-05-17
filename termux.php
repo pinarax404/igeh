@@ -83,8 +83,8 @@ function pinarax_start_create() {
                     if($submit_code !== false  && strpos($submit_code, 'signup_code') !== false) {
                         $res_submit_code = json_decode($submit_code, true);
                         $signup_code = $res_submit_code['signup_code'];
-                        $p_create_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&email='.$res_email_id.'&username='.$res_username.'&first_name='.$res_name.'&client_id='.$res_ig_mid.'&seamless_login_enabled=1&opt_into_one_tap=false&tos_version=eu&force_sign_up_code='.$signup_code;
-						$create_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/web_create_ajax/', $p_create_ajax, true, false, $res_ig_csrftoken, false, 'respons_data');
+                        $p_create_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&email='.$res_email_id.'&username='.$res_name.'&first_name=anna&month='.rand(1,12).'&day='.rand(1,30).'&year='.rand(1990,2005).'&client_id='.$res_ig_mid.'&seamless_login_enabled=1&tos_version=eu&force_sign_up_code='.$signup_code;
+						$create_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/web_create_ajax/?hl=id', $p_create_ajax, true, false, $res_ig_csrftoken, false, 'respons_data');
                         if($create_ajax){
                             $p_login_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&username='.$res_username.'&queryParams=%7B%7D&optIntoOneTap=false&stopDeletionNonce=&trustedDeviceRecords=%7B%7D';
                             $login_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/login/ajax/', $p_login_ajax, true, false, $res_ig_csrftoken, true, 'respons_data');
@@ -154,10 +154,12 @@ function pinarax_curl_ig($url, $data, $httpheader, $header, $csrftoken, $save_co
     curl_setopt($ch, CURLOPT_URL, $url);
     if($httpheader) {
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+			'content-type: application/x-www-form-urlencoded',
+			'x-asbd-id: 198387',
 			'x-csrftoken: ' . $csrftoken,
-			'X-Instagram-AJAX: 1',
-			'X-Requested-With: XMLHttpRequest',
-			'Referer: https://www.instagram.com/',
+			'x-ig-www-claim: 0',
+			'x-instagram-ajax: 9bcc5b5208c5',
+			'method: POST',
 			'user-agent: Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0'
         ));
     }
