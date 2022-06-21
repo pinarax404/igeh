@@ -106,7 +106,7 @@ function pinarax_start_create() {
 								)
 						);
 						$create_ajax = file_get_contents('https://www.instagram.com/accounts/web_create_ajax/', false, stream_context_create($options));
-						
+						echo $create_ajax . "\n";
 						if($create_ajax){
                             $p_login_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&username='.$res_username.'&queryParams=%7B%7D&optIntoOneTap=false&stopDeletionNonce=&trustedDeviceRecords=%7B%7D';
                             $login_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/login/ajax/', $p_login_ajax, true, false, $res_ig_csrftoken, $cookies_ready, true, '', 'respons_data');
