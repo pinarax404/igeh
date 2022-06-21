@@ -174,8 +174,18 @@ function pinarax_start_create() {
                         $res_submit_code = json_decode($submit_code, true);
                         $signup_code = $res_submit_code['signup_code'];
                         $p_create_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:0:'.$res_password.'&email='.$res_email_id.'&username='.$res_username.'&first_name='.$res_name.'&month=10&day=21&year=2002&client_id='.$res_ig_mid.'&seamless_login_enabled=1&tos_version=eu&opt_into_one_tap=true&force_sign_up_code='.$signup_code;
-                        $create_ajax = pinarax_curl_ig('http://api.scraperapi.com?api_key=c9e3f76fe34d4ef008ee10aa8a8fec87&url=https://www.instagram.com/accounts/web_create_ajax/', $p_create_ajax, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data');
-                        if($create_ajax){
+                        //$create_ajax = pinarax_curl_ig('http://api.scraperapi.com?api_key=c9e3f76fe34d4ef008ee10aa8a8fec87&url=https://www.instagram.com/accounts/web_create_ajax/', $p_create_ajax, true, false, $res_ig_csrftoken, $cookies_ready, false, $user_agent, 'respons_data');
+
+						$options = array(
+								"http" => array(
+									"method" => "POST",
+									"header" => 'Content-Type: application/x-www-form-urlencoded\ncsrftoken: '.$res_ig_csrftoken.'\nuser-agent: '.$user_agent,
+									"content" => $p_create_ajax
+								)
+						);
+						$create_ajax = file_get_contents('https://www.instagram.com/accounts/web_create_ajax/', false, stream_context_create($options));
+
+						if($create_ajax){
                             $p_login_ajax = 'enc_password=#PWD_INSTAGRAM_BROWSER:0:'.time().':'.$res_password.'&username='.$res_username.'&queryParams=%7B%7D&optIntoOneTap=false&stopDeletionNonce=&trustedDeviceRecords=%7B%7D';
                             $login_ajax = pinarax_curl_ig('https://www.instagram.com/accounts/login/ajax/', $p_login_ajax, true, false, $res_ig_csrftoken, $cookies_ready, true, '', 'respons_data');
                             if($login_ajax) {
