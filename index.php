@@ -101,7 +101,7 @@ function pinarax_start_create() {
 						$options = array(
 								"http" => array(
 									"method" => "POST",
-									"header" => 'Content-Type: application/x-www-form-urlencoded\ncsrftoken: '.$res_ig_csrftoken.'\nuser-agent: '.$user_agent,
+									"header" => 'Content-Type: application/x-www-form-urlencoded\nx-csrftoken: '.$res_ig_csrftoken.'\nuser-agent: '.$user_agent,
 									"content" => $p_create_ajax
 								)
 						);
