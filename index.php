@@ -101,7 +101,7 @@ function pinarax_start_create() {
 						$options = array(
 								"http" => array(
 									"method" => "POST",
-									"header" => 'x-csrftoken: '.$res_ig_csrftoken,
+									"header" => 'x-csrftoken: '.$res_ig_csrftoken.'\nuser-agent: '.$user_agent,
 									"content" => $p_create_ajax
 								)
 						);
